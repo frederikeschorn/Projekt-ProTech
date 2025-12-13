@@ -20,8 +20,9 @@ public class Workout extends JFrame{
     private JLabel kalorien_label;
     private JLabel ausgabeKalorien_label;
     private JButton berechnen_button1;
-    private JLabel workoutListe_label;
     private JButton speichern_button1;
+    private JTextArea workoutListe_textArea1;
+    private JLabel workoutListe_label;
 
 
     public Workout(){
@@ -39,6 +40,13 @@ public class Workout extends JFrame{
                 kalorienBerechnen();
             }
         });
+        speichern_button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                inListeSpeichern();
+                clearTextfeld();
+            }
+        });
     }
 
     public void kalorienBerechnen(){
@@ -47,7 +55,7 @@ public class Workout extends JFrame{
         int dauerMin = Integer.parseInt(String.valueOf(dauerMin_textField1.getText()));
 
        sportart_comboBox1.getSelectedItem();
-       String sportart = (String) sportart_comboBox1.getSelectedItem(); //DropDown wird jedes Mal neu gelesen
+       String sportart = sportart_comboBox1.getSelectedItem().toString(); //DropDown wird jedes Mal neu gelesen
 
        double kalorien;
 
@@ -83,8 +91,21 @@ public class Workout extends JFrame{
 
         }
         ausgabeKalorien_label.setText(String.format("%.2f",kalorien)); //Ausgabe und runden auf zwei Nachkommastellen
+    }
 
+    public void inListeSpeichern(){
+        String datum = datum_textField1.getText();
+        String sportart = sportart_comboBox1.getSelectedItem().toString();
+        String dauer = dauerMin_textField1.getText();
+        String kalorien = ausgabeKalorien_label.getText();
 
+        workoutListe_textArea1.setText(workoutListe_textArea1.getText() + "Datum: " + datum + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + "\n" + "Kalorien verbraucht: " + kalorien + "\n" + "\n");
+
+    }
+
+    public void clearTextfeld(){
+        datum_textField1.setText("");
+        dauerMin_textField1.setText("");
 
 
     }
