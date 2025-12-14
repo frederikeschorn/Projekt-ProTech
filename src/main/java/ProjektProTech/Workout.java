@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import org.jdatepicker.impl.*;
 
 public class Workout extends JFrame{
     private JPanel mainPanel;
@@ -37,6 +38,7 @@ public class Workout extends JFrame{
         berechnen_button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                exceptionHandeling();
                 kalorienBerechnen();
             }
         });
@@ -91,6 +93,7 @@ public class Workout extends JFrame{
 
         }
         ausgabeKalorien_label.setText(String.format("%.2f",kalorien)); //Ausgabe und runden auf zwei Nachkommastellen
+
     }
 
     public void inListeSpeichern(){
@@ -106,6 +109,42 @@ public class Workout extends JFrame{
     public void clearTextfeld(){
         datum_textField1.setText("");
         dauerMin_textField1.setText("");
+    }
+
+    public void exceptionHandeling(){
+
+        try{
+            String name = name_textField1.getText();
+
+            for (int i = 0; i < name.length(); i++){
+                char c = name.charAt(i);
+
+                if (!Character.isLetter(c)){
+                    throw new Exception("Name darf nur Buchstaben enthalten!");
+
+                }
+            }
+
+        }catch (Exception name){
+            JOptionPane.showMessageDialog(null, name.getMessage());
+        }
+
+        try{
+            Double.parseDouble(gewicht_textField1.getText());
+
+
+        }catch(Exception gewicht){
+            JOptionPane.showMessageDialog(null, "Gewicht darf nur Zahlen enthalten!");
+        }
+
+        try{
+            Double.parseDouble(datum_textField1.getText());
+
+
+        }catch(Exception datum){
+            JOptionPane.showMessageDialog(null, "Datum bitte wie folgt angeben: dd/mm/yyyy");
+        }
+
 
 
     }
