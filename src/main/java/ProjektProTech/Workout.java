@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class Workout extends JFrame{
     private JPanel mainPanel;
@@ -24,6 +22,10 @@ public class Workout extends JFrame{
     private JTextArea workoutListe_textArea1;
     private JLabel workoutListe_label;
     private JTextField name_textField1;
+    private JComboBox monat_comboBox2;
+    private JComboBox jahr_comboBox3;
+    private JComboBox tage_comboBox1;
+    private JTextField dauer_textField1;
 
 
     public Workout(){
