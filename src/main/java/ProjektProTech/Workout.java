@@ -4,12 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import org.jdatepicker.impl.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Workout extends JFrame{
     private JPanel mainPanel;
-    private JLabel name_label;
-    private JTextField name_textField1;
     private JLabel datum_label;
     private JTextField datum_textField1;
     private JLabel gewicht_label;
@@ -24,11 +23,12 @@ public class Workout extends JFrame{
     private JButton speichern_button1;
     private JTextArea workoutListe_textArea1;
     private JLabel workoutListe_label;
+    private JTextField name_textField1;
 
 
     public Workout(){
         setTitle("Workout");
-        setSize(300, 200);
+        setSize(500, 500);
         setBackground(Color.blue);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -38,7 +38,6 @@ public class Workout extends JFrame{
         berechnen_button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exceptionHandeling();
                 kalorienBerechnen();
             }
         });
@@ -111,43 +110,7 @@ public class Workout extends JFrame{
         dauerMin_textField1.setText("");
     }
 
-    public void exceptionHandeling(){
 
-        try{
-            String name = name_textField1.getText();
-
-            for (int i = 0; i < name.length(); i++){
-                char c = name.charAt(i);
-
-                if (!Character.isLetter(c)){
-                    throw new Exception("Name darf nur Buchstaben enthalten!");
-
-                }
-            }
-
-        }catch (Exception name){
-            JOptionPane.showMessageDialog(null, name.getMessage());
-        }
-
-        try{
-            Double.parseDouble(gewicht_textField1.getText());
-
-
-        }catch(Exception gewicht){
-            JOptionPane.showMessageDialog(null, "Gewicht darf nur Zahlen enthalten!");
-        }
-
-        try{
-            Double.parseDouble(datum_textField1.getText());
-
-
-        }catch(Exception datum){
-            JOptionPane.showMessageDialog(null, "Datum bitte wie folgt angeben: dd/mm/yyyy");
-        }
-
-
-
-    }
 
 
     public static void main(String[] args) {
