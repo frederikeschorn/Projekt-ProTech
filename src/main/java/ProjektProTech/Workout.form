@@ -196,7 +196,7 @@
           </model>
         </properties>
       </component>
-      <component id="40e99" class="javax.swing.JTextField" binding="dauer_textField1">
+      <component id="40e99" class="javax.swing.JTextField" binding="dauerMin_textField1">
         <constraints>
           <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
