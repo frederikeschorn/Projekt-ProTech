@@ -24,7 +24,6 @@ public class Workout extends JFrame{
     private JComboBox monat_comboBox2;
     private JComboBox jahr_comboBox3;
     private JComboBox tage_comboBox1;
-    private JTextField dauer_textField1;
 
 
     public Workout(){
@@ -53,11 +52,11 @@ public class Workout extends JFrame{
 
     public void kalorienBerechnen(){
         String gewichtText = gewicht_textField1.getText().trim(); //Trim= Leerzeichen werden am Anfang und Ende entfernt
-        String dauerText   = dauer_textField1.getText().trim();
+        String dauerText   = dauerMin_textField1.getText().trim();
 
         if (dauerText.contains(",")) {
             ausgabeKalorien_label.setText("");//alter Wert wird gelöscht und es steht nichts mehr in dem Feld
-            JOptionPane.showMessageDialog(null, "Bitte bei Dauer in Minuten nur ganze Zahlen(ohne Komma) eingeben.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Bitte bei Dauer in Minuten nur ganze Zahlen (ohne Komma) eingeben.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
