@@ -54,6 +54,18 @@ public class FitnessTracker extends JFrame{
         String gewichtText = gewicht_textField1.getText().trim(); //Trim= Leerzeichen werden am Anfang und Ende entfernt
         String dauerText   = dauerMin_textField1.getText().trim();
 
+        if (gewichtText.isEmpty() ){
+            gewicht_textField1.setText("");
+            JOptionPane.showMessageDialog(null, "Bitte gebe dein Gewicht ein.", "Eingabefehler",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (dauerText.isEmpty() ){
+            dauerMin_textField1.setText("");
+            JOptionPane.showMessageDialog(null, "Bitte gebe die Dauer in Minuten ein.", "Eingabefehler",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if (dauerText.contains(",")) {
             ausgabeKalorien_label.setText("");//alter Wert wird gelöscht und es steht nichts mehr in dem Feld
             JOptionPane.showMessageDialog(null, "Bitte bei Dauer in Minuten nur ganze Zahlen (ohne Komma) eingeben.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
@@ -105,12 +117,19 @@ public class FitnessTracker extends JFrame{
         }catch(NumberFormatException g){
             ausgabeKalorien_label.setText("");
             JOptionPane.showMessageDialog(null, "Bitte beim Gewicht nur Zahlen eingeben.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
-            return;
+            return; //wiso brauche ich hier kein return??
         }
 
     }
 
     public void inListeSpeichern(){
+        String name = name_textField1.getText().trim();
+
+        if (name.isEmpty()){
+            name_textField1.setText("");
+            JOptionPane.showMessageDialog(null, "Bitte gebe dein Name ein.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String tag = tage_comboBox1.getSelectedItem().toString();
         String monat = monat_comboBox2.getSelectedItem().toString();
         String jahr = jahr_comboBox3.getSelectedItem().toString();
