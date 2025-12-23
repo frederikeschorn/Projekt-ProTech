@@ -27,12 +27,14 @@ public class FitnessTracker extends JFrame{
 
 
     public FitnessTracker(){
-        setTitle("Workout");
+        setTitle("FitnessTracker");
         setSize(500, 500);
         setBackground(Color.blue);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setContentPane(mainPanel);
+
+        workoutListe_textArea1.setText(Workouts.iniitMethode());
 
 
         berechnen_button1.addActionListener(new ActionListener() {
@@ -137,7 +139,7 @@ public class FitnessTracker extends JFrame{
         String dauer = dauerMin_textField1.getText();
         String kalorien = ausgabeKalorien_label.getText();
 
-        workoutListe_textArea1.setText(workoutListe_textArea1.getText() + "Datum: " + tag + "/" + monat + "/" + jahr + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + "\n" + "Kalorien verbraucht: " + kalorien + "\n" + "\n");
+        workoutListe_textArea1.setText(workoutListe_textArea1.getText() + "Datum: " + tag + "/" + monat + "/" + jahr + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + " Minuten\n" + "Kalorien verbraucht: " + kalorien + "\n" + "\n");
 
     }
 
