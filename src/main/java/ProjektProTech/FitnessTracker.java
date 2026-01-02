@@ -24,6 +24,10 @@ public class FitnessTracker extends JFrame{
     private JComboBox monat_comboBox2;
     private JComboBox jahr_comboBox3;
     private JComboBox tage_comboBox1;
+    private JButton kalorienSumme_button1;
+    private JLabel kalorienSumme_label;
+
+    private double kalorienSumme = 520 + 610 + 780;
 
 
     public FitnessTracker(){
@@ -34,7 +38,9 @@ public class FitnessTracker extends JFrame{
         setVisible(true);
         setContentPane(mainPanel);
 
-        workoutListe_textArea1.setText(Workouts.iniitMethode());
+        for (Workouts w: Workouts.initMethode()){
+            workoutListe_textArea1.append(w.toText());
+        }
 
 
         berechnen_button1.addActionListener(new ActionListener() {
@@ -48,6 +54,13 @@ public class FitnessTracker extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 inListeSpeichern();
                 clearTextfeld();
+            }
+        });
+        kalorienSumme_button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                kalorienSumme();
+
             }
         });
     }
@@ -141,17 +154,28 @@ public class FitnessTracker extends JFrame{
 
         workoutListe_textArea1.setText(workoutListe_textArea1.getText() + "Datum: " + tag + "/" + monat + "/" + jahr + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + " Minuten\n" + "Kalorien verbraucht: " + kalorien + "\n" + "\n");
 
+        double kcal = Double.parseDouble(kalorien.replace("," , "."));
+        kalorienSumme += kcal;
+
     }
 
     public void clearTextfeld(){
         dauerMin_textField1.setText("");
     }
 
+    public void kalorienSumme(){
+        kalorienSumme_label.setText(
+                String.format("Gesamtkalorien: %.2f", kalorienSumme)
+        );
+
+
+    }
+
 
 
 
     public static void main(String[] args) {
-        FitnessTracker w = new FitnessTracker();
+        FitnessTracker ft = new FitnessTracker();
 
     }
 
