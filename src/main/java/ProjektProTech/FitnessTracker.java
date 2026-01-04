@@ -71,19 +71,19 @@ public class FitnessTracker extends JFrame{
 
         if (gewichtText.isEmpty() ){
             gewicht_textField1.setText("");
-            JOptionPane.showMessageDialog(null, "Bitte gebe dein Gewicht ein.", "Eingabefehler",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Bitte Gewicht eingeben.", "Eingabefehler",JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (dauerText.isEmpty() ){
             dauerMin_textField1.setText("");
-            JOptionPane.showMessageDialog(null, "Bitte gebe die Dauer in Minuten ein.", "Eingabefehler",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Bitte Dauer in Minuten eingeben.", "Eingabefehler",JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (dauerText.contains(",")) {
             ausgabeKalorien_label.setText("");//alter Wert wird gelöscht und es steht nichts mehr in dem Feld
-            JOptionPane.showMessageDialog(null, "Bitte bei Dauer in Minuten nur ganze Zahlen (ohne Komma) eingeben.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Bitte Dauer in Minuten nur in ganze Zahlen (ohne Komma).", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -131,7 +131,7 @@ public class FitnessTracker extends JFrame{
 
         }catch(NumberFormatException g){
             ausgabeKalorien_label.setText("");
-            JOptionPane.showMessageDialog(null, "Bitte beim Gewicht nur Zahlen eingeben.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Bitte Gewicht nur in ganzen Zahlen.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
             return; //wiso brauche ich hier kein return??
         }
 
@@ -142,7 +142,7 @@ public class FitnessTracker extends JFrame{
 
         if (name.isEmpty()){
             name_textField1.setText("");
-            JOptionPane.showMessageDialog(null, "Bitte gebe dein Name ein.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Bitte Name eingeben.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String tag = tage_comboBox1.getSelectedItem().toString();
@@ -165,7 +165,7 @@ public class FitnessTracker extends JFrame{
 
     public void kalorienSumme(){
         kalorienSumme_label.setText(
-                String.format("Gesamtkalorien: %.2f", kalorienSumme)
+                String.format("Gesamtkalorien: %.2f", kalorienSumme) //runden auf zwei Nachkommastellen
         );
 
 
