@@ -22,6 +22,7 @@
         </constraints>
         <properties>
           <model>
+            <item value="Sportart auswählen "/>
             <item value="Fußball"/>
             <item value="Gehen"/>
             <item value="Krafttraining"/>

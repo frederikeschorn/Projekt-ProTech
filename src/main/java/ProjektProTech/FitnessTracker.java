@@ -124,8 +124,12 @@ public class FitnessTracker extends JFrame{
             } else if ("Wandern".equals(sportart)) {
                 kalorien = 6.0 * gewicht * (dauerMin / 60.0);
 
-            } else {
+            } else if ("Yoga".equals(sportart)){
                 kalorien = 2.5 * gewicht * (dauerMin / 60.0);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Bitte Sportart auswählen.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
+                return;
 
             }
             ausgabeKalorien_label.setText(String.format("%.2f", kalorien)); //Ausgabe und runden auf zwei Nachkommastellen
@@ -164,11 +168,10 @@ public class FitnessTracker extends JFrame{
         dauerMin_textField1.setText("");
     }
 
-    public void kalorienSumme(){
+    public double kalorienSumme(){
         kalorienSumme_label.setText(
-                String.format("Gesamtkalorien: %.2f", kalorienSumme) //runden auf zwei Nachkommastellen
-        );
-
+                String.format("Gesamtkalorien: %.2f", kalorienSumme)); //runden auf zwei Nachkommastellen
+                return kalorienSumme;
 
     }
 
