@@ -33,6 +33,7 @@ public class FitnessTracker extends JFrame{
     public FitnessTracker(){
         setTitle("FitnessTracker");
         setSize(500, 500);
+        mainPanel.setBackground(Color.lightGray);
         setBackground(Color.blue);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
