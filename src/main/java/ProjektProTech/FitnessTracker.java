@@ -30,6 +30,7 @@ public class FitnessTracker extends JFrame{
 
     private double kalorienSumme = 520 + 610 + 780;
 
+
 // Fenster designt
     public FitnessTracker(){
         setTitle("FitnessTracker");
@@ -44,6 +45,7 @@ public class FitnessTracker extends JFrame{
         for (Workouts w: Workouts.initMethode()){
             workoutListe_textArea1.append(w.toText());
         }
+
 
 //Butten erstellen
         berechnen_button1.addActionListener(new ActionListener() {
@@ -143,6 +145,8 @@ public class FitnessTracker extends JFrame{
         }
 
     }
+
+
 //Workouts in TextArea gespeichern
     public void inListeSpeichern(){
         String name = name_textField1.getText().trim();
@@ -163,13 +167,15 @@ public class FitnessTracker extends JFrame{
 
         double kcal = Double.parseDouble(kalorien.replace("," , "."));
         kalorienSumme += kcal;
-
     }
+
+
 // Text aus Dauer und Gewicht löschen
     public void clearTextfeld(){
         dauerMin_textField1.setText("");
         gewicht_textField1.setText("");
     }
+
 
     public double kalorienSumme(){
         kalorienSumme_label.setText(
