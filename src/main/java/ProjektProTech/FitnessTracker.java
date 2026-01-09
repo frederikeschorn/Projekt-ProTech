@@ -65,10 +65,10 @@ public class FitnessTracker extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 kalorienSumme();
-
             }
         });
     }
+
 // Kalorien berechnen und exception handeling
     public void kalorienBerechnen(){
         String gewichtText = gewicht_textField1.getText().trim(); //Trim= Leerzeichen werden am Anfang und Ende entfernt
@@ -86,13 +86,11 @@ public class FitnessTracker extends JFrame{
             return;
         }
 
-        if (dauerText.contains(",")) {
-            ausgabeKalorien_label.setText("");//alter Wert wird gelöscht und es steht nichts mehr in dem Feld
-            JOptionPane.showMessageDialog(null, "Bitte Dauer in Minuten nur in ganze Zahlen (ohne Komma).", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
 
+        //Komma statt Punkt erlauben
         try {
+            gewichtText = gewichtText.replace(",", ".");
+
             double gewicht = Double.parseDouble(gewichtText);//double, weil nicht nur ganze Zahlen
             int dauerMin = Integer.parseInt(dauerText); //int, weil nur ganze Zahlen
 
@@ -138,12 +136,11 @@ public class FitnessTracker extends JFrame{
             }
             ausgabeKalorien_label.setText(String.format("%.2f", kalorien)); //Ausgabe und runden auf zwei Nachkommastellen
 
-        }catch(NumberFormatException g){
-            ausgabeKalorien_label.setText("");
-            JOptionPane.showMessageDialog(null, "Bitte Gewicht nur in ganzen Zahlen.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
-            return; //wieso brauche ich hier kein return??
-        }
 
+        } catch (NumberFormatException e){
+            ausgabeKalorien_label.setText("");
+            JOptionPane.showMessageDialog(null, "Bitte Gewicht als Zahl eingeben. (z.B. 71,5)");
+        }
     }
 
 
@@ -181,16 +178,10 @@ public class FitnessTracker extends JFrame{
         kalorienSumme_label.setText(
                 String.format("Gesamtkalorien: %.2f", kalorienSumme)); //auf zwei Nachkommastellen runden
                 return kalorienSumme;
-
     }
-
-
 
 
     public static void main(String[] args) {
         FitnessTracker ft = new FitnessTracker();
-
     }
-
-
 }
