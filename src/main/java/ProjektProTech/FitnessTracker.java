@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Fenster erstellen
 public class FitnessTracker extends JFrame{
     private JPanel mainPanel;
     private JLabel datum_label;
@@ -29,7 +30,7 @@ public class FitnessTracker extends JFrame{
 
     private double kalorienSumme = 520 + 610 + 780;
 
-
+// Fenster designt
     public FitnessTracker(){
         setTitle("FitnessTracker");
         setSize(500, 500);
@@ -39,11 +40,12 @@ public class FitnessTracker extends JFrame{
         setVisible(true);
         setContentPane(mainPanel);
 
+// Workouts werden in Liste angezeigt
         for (Workouts w: Workouts.initMethode()){
             workoutListe_textArea1.append(w.toText());
         }
 
-
+//Butten erstellen
         berechnen_button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +67,7 @@ public class FitnessTracker extends JFrame{
             }
         });
     }
-
+// Kalorien berechnen
     public void kalorienBerechnen(){
         String gewichtText = gewicht_textField1.getText().trim(); //Trim= Leerzeichen werden am Anfang und Ende entfernt
         String dauerText   = dauerMin_textField1.getText().trim();
@@ -141,7 +143,7 @@ public class FitnessTracker extends JFrame{
         }
 
     }
-
+//Workouts in TextArea gespeichern
     public void inListeSpeichern(){
         String name = name_textField1.getText().trim();
 
@@ -163,7 +165,7 @@ public class FitnessTracker extends JFrame{
         kalorienSumme += kcal;
 
     }
-
+// Text aus Dauer und Gewicht löschen
     public void clearTextfeld(){
         dauerMin_textField1.setText("");
         gewicht_textField1.setText("");
@@ -171,7 +173,7 @@ public class FitnessTracker extends JFrame{
 
     public double kalorienSumme(){
         kalorienSumme_label.setText(
-                String.format("Gesamtkalorien: %.2f", kalorienSumme)); //runden auf zwei Nachkommastellen
+                String.format("Gesamtkalorien: %.2f", kalorienSumme)); //auf zwei Nachkommastellen runden
                 return kalorienSumme;
 
     }
