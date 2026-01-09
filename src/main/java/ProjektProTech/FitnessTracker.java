@@ -47,7 +47,7 @@ public class FitnessTracker extends JFrame{
         }
 
 
-//Butten erstellen
+// Button erstellen
         berechnen_button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,7 +69,7 @@ public class FitnessTracker extends JFrame{
             }
         });
     }
-// Kalorien berechnen
+// Kalorien berechnen und exception handeling
     public void kalorienBerechnen(){
         String gewichtText = gewicht_textField1.getText().trim(); //Trim= Leerzeichen werden am Anfang und Ende entfernt
         String dauerText   = dauerMin_textField1.getText().trim();
@@ -141,13 +141,13 @@ public class FitnessTracker extends JFrame{
         }catch(NumberFormatException g){
             ausgabeKalorien_label.setText("");
             JOptionPane.showMessageDialog(null, "Bitte Gewicht nur in ganzen Zahlen.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
-            return; //wiso brauche ich hier kein return??
+            return; //wieso brauche ich hier kein return??
         }
 
     }
 
 
-//Workouts in TextArea gespeichern
+//Workouts in TextArea speichern
     public void inListeSpeichern(){
         String name = name_textField1.getText().trim();
 
