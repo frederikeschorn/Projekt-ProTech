@@ -166,6 +166,7 @@ public class FitnessTracker extends JFrame{
 
     public void clearTextfeld(){
         dauerMin_textField1.setText("");
+        gewicht_textField1.setText("");
     }
 
     public double kalorienSumme(){
