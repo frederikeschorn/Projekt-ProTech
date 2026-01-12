@@ -151,7 +151,21 @@ public class FitnessTracker extends JFrame{
 
 //Workouts in TextArea speichern
     public void inListeSpeichern(){
+
+        String gewicht = gewicht_textField1.getText().trim();
+        String dauer = dauerMin_textField1.getText().trim();
         String name = name_textField1.getText().trim();
+
+        //Prüfen ob bei Name, Gewicht, Dauer und Sportart etwas eingegeben wurde -> wenn nicht, dann Fehlerfenster
+        if (name.isEmpty() || gewicht.isEmpty() || dauer.isEmpty() || sportart_comboBox1.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(null, "Bitte Gewicht, Dauer, Name und Sportart eingeben. \nSind diese ausgefüllt, bitte betätige den 'Berechnen-Button'.");
+            return;
+        }
+
+        //Name wird angezeigt ohne alles zulöschen
+        workoutListe_textArea1.append("Workout von: " + name + "\n");
+
+
 
         //Name prüfen
         if (name.isEmpty()){
@@ -160,12 +174,12 @@ public class FitnessTracker extends JFrame{
             return;
         }
 
+
         //Datum auslesen
         String tag = tage_comboBox1.getSelectedItem().toString();
         String monat = monat_comboBox2.getSelectedItem().toString();
         String jahr = jahr_comboBox3.getSelectedItem().toString();
         String sportart = sportart_comboBox1.getSelectedItem().toString();
-        String dauer = dauerMin_textField1.getText();
         String kalorien = ausgabeKalorien_label.getText();
 
         workoutListe_textArea1.setText(workoutListe_textArea1.getText() + "Datum: " + tag + "/" + monat + "/" + jahr + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + " Minuten\n" + "Kalorien verbraucht: " + kalorien + "\n" + "\n");
