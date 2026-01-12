@@ -144,7 +144,7 @@ public class FitnessTracker extends JFrame{
 
         } catch (NumberFormatException e){
             ausgabeKalorien_label.setText("");
-            JOptionPane.showMessageDialog(null, "Bitte Gewicht als Zahl eingeben. (z.B. 71,5)");
+            JOptionPane.showMessageDialog(null, "Bitte Gewicht (z.B. 71,5) und Dauer (z.B. 120) als Zahl eingeben.");
         }
     }
 
@@ -161,6 +161,7 @@ public class FitnessTracker extends JFrame{
         }
 
         //Datum auslesen
+        String name2 = name_textField1.getText();
         String tag = tage_comboBox1.getSelectedItem().toString();
         String monat = monat_comboBox2.getSelectedItem().toString();
         String jahr = jahr_comboBox3.getSelectedItem().toString();
@@ -168,7 +169,7 @@ public class FitnessTracker extends JFrame{
         String dauer = dauerMin_textField1.getText();
         String kalorien = ausgabeKalorien_label.getText();
 
-        workoutListe_textArea1.setText(workoutListe_textArea1.getText() + "Datum: " + tag + "/" + monat + "/" + jahr + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + " Minuten\n" + "Kalorien verbraucht: " + kalorien + "\n" + "\n");
+        workoutListe_textArea1.setText("Workouts von: " + name2 + "\n\n" + workoutListe_textArea1.getText() + "Datum: " + tag + "/" + monat + "/" + jahr + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + " Minuten\n" + "Kalorien verbraucht: " + kalorien + "\n" + "\n");
 
         double kcal = Double.parseDouble(kalorien.replace("," , ".")); //Java erwartet Punkt bei Kalorien und nicht Komma - deshalb ändern
         kalorienSumme = kalorienSumme + kcal;
