@@ -21,13 +21,5 @@ public class Workouts {
         return "Datum: " + datum + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + " Minuten\n" + "Kalorien verbraucht: " + kalorien + "\n\n";
     }
 
-    public static ArrayList<Workouts> initMethode(){
-        ArrayList<Workouts> liste = new ArrayList<>();
 
-        liste.add (new Workouts("01/05/2024", 45, 520.00, "Laufen"));
-        liste.add (new Workouts("10/09/2025", 60, 610.00, "Krafttraining"));
-        liste.add (new Workouts("15/10/2025", 90, 780.00, "Radfahren"));
-
-        return liste;
-    }
 }

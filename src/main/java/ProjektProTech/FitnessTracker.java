@@ -4,9 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 //Klassenkopf - Klasse erbt alle Funktionen von JFrame
-public class FitnessTracker extends JFrame{
+public class FitnessTracker extends JFrame {
 
     //Attribute (GUI-Komponenten)
     private JPanel mainPanel;
@@ -30,14 +31,14 @@ public class FitnessTracker extends JFrame{
     private JButton kalorienSumme_button1;
     private JLabel kalorienSumme_label;
 
-//Klassenvariable
+    //Klassenvariable
     private double kalorienSumme = 520 + 610 + 780;
+    static ArrayList<Workouts> liste = new ArrayList<>();//außerhalb einer Methode, da es so für die ganze Klasse gilt
 
-
-//Konstruktor und Fenster konfigurieren
-    public FitnessTracker(){
+    //Konstruktor und Fenster konfigurieren
+    public FitnessTracker() {
         setTitle("FitnessTracker");
-        setSize(500, 500);
+        setSize(1000, 500);
         mainPanel.setBackground(Color.lightGray);
         setBackground(Color.blue);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,7 +46,7 @@ public class FitnessTracker extends JFrame{
         setVisible(true);
 
 // Workouts werden beim Start angezeigt
-        for (Workouts w: Workouts.initMethode()){
+        for (Workouts w : initMethode()) {
             workoutListe_textArea1.append(w.toText());
         }
 
@@ -72,20 +73,20 @@ public class FitnessTracker extends JFrame{
         });
     }
 
-//Eingabe lesen und prüfen - leere Eingabe abfangen, dann Fehlermeldung
-    public void kalorienBerechnen(){
+    //Eingabe lesen und prüfen - leere Eingabe abfangen, dann Fehlermeldung
+    public void kalorienBerechnen() {
         String gewichtText = gewicht_textField1.getText().trim(); //Trim= Leerzeichen werden am Anfang und Ende entfernt
-        String dauerText   = dauerMin_textField1.getText().trim();
+        String dauerText = dauerMin_textField1.getText().trim();
 
-        if (gewichtText.isEmpty() ){
+        if (gewichtText.isEmpty()) {
             gewicht_textField1.setText("");
-            JOptionPane.showMessageDialog(null, "Bitte Gewicht eingeben.", "Eingabefehler",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Bitte Gewicht eingeben.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (dauerText.isEmpty() ){
+        if (dauerText.isEmpty()) {
             dauerMin_textField1.setText("");
-            JOptionPane.showMessageDialog(null, "Bitte Dauer in Minuten eingeben.", "Eingabefehler",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Bitte Dauer in Minuten eingeben.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -131,7 +132,7 @@ public class FitnessTracker extends JFrame{
             } else if ("Wandern".equals(sportart)) {
                 kalorien = 6.0 * gewicht * (dauerMin / 60.0);
 
-            } else if ("Yoga".equals(sportart)){
+            } else if ("Yoga".equals(sportart)) {
                 kalorien = 2.5 * gewicht * (dauerMin / 60.0);
 
             } else {
@@ -142,22 +143,22 @@ public class FitnessTracker extends JFrame{
             ausgabeKalorien_label.setText(String.format("%.2f", kalorien)); //Ausgabe und runden auf zwei Nachkommastellen
 
 
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             ausgabeKalorien_label.setText("");
             JOptionPane.showMessageDialog(null, "Bitte Gewicht (z.B. 71,5) und Dauer (z.B. 120) als Zahl eingeben.");
         }
     }
 
 
-//Workouts in TextArea speichern
-    public void inListeSpeichern(){
+    //Workouts in TextArea speichern
+    public void inListeSpeichern() {
 
         String gewicht = gewicht_textField1.getText().trim();
         String dauer = dauerMin_textField1.getText().trim();
         String name = name_textField1.getText().trim();
 
         //Prüfen ob bei Name, Gewicht, Dauer und Sportart etwas eingegeben wurde -> wenn nicht, dann Fehlerfenster
-        if (name.isEmpty() || gewicht.isEmpty() || dauer.isEmpty() || sportart_comboBox1.getSelectedItem() == null){
+        if (name.isEmpty() || gewicht.isEmpty() || dauer.isEmpty() || sportart_comboBox1.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(null, "Bitte Gewicht, Dauer, Name und Sportart eingeben. \nSind diese ausgefüllt, bitte betätige den 'Berechnen-Button'.");
             return;
         }
@@ -166,9 +167,8 @@ public class FitnessTracker extends JFrame{
         workoutListe_textArea1.append("Workout von: " + name + "\n");
 
 
-
         //Name prüfen
-        if (name.isEmpty()){
+        if (name.isEmpty()) {
             name_textField1.setText("");
             JOptionPane.showMessageDialog(null, "Bitte Name eingeben.", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
             return;
@@ -182,28 +182,39 @@ public class FitnessTracker extends JFrame{
         String sportart = sportart_comboBox1.getSelectedItem().toString();
         String kalorien = ausgabeKalorien_label.getText();
 
+        liste.add(new Workouts("01/05/2024", 45, 520.00, "Laufen"));
         workoutListe_textArea1.setText(workoutListe_textArea1.getText() + "Datum: " + tag + "/" + monat + "/" + jahr + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + " Minuten\n" + "Kalorien verbraucht: " + kalorien + "\n" + "\n");
 
-        double kcal = Double.parseDouble(kalorien.replace("," , ".")); //Java erwartet Punkt bei Kalorien und nicht Komma - deshalb ändern
+        double kcal = Double.parseDouble(kalorien.replace(",", ".")); //Java erwartet Punkt bei Kalorien und nicht Komma - deshalb ändern
         kalorienSumme = kalorienSumme + kcal;
     }
 
 
-//Eingabefelder Dauer und Gewicht löschen nach betätigen des Speichern Button
-    public void clearTextfeld(){
+    //Eingabefelder Dauer und Gewicht löschen nach betätigen des Speichern Button
+    public void clearTextfeld() {
         dauerMin_textField1.setText("");
         gewicht_textField1.setText("");
     }
 
-//Alle Kalorien werden addiert und ausgegeben
-    public double kalorienSumme(){
+    //Alle Kalorien werden addiert und ausgegeben
+    public double kalorienSumme() {
         kalorienSumme_label.setText(
                 String.format("Gesamtkalorien: %.2f", kalorienSumme)); //auf zwei Nachkommastellen runden
-                return kalorienSumme;
+        return kalorienSumme;
     }
 
-//main-Methode - Startpunkt des Programms
+    //main-Methode - Startpunkt des Programms
     public static void main(String[] args) {
         FitnessTracker ft = new FitnessTracker();
+    }
+
+    public static ArrayList<Workouts> initMethode() {
+
+
+        liste.add(new Workouts("01/05/2024", 45, 520.00, "Laufen"));
+        liste.add(new Workouts("10/09/2025", 60, 610.00, "Krafttraining"));
+        liste.add(new Workouts("15/10/2025", 90, 780.00, "Radfahren"));
+
+        return liste;
     }
 }
