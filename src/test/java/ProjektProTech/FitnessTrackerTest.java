@@ -16,7 +16,7 @@ class FitnessTrackerTest {
         ft.sportart_comboBox1.setSelectedItem("Laufen");
 
         //Methode ausführen
-        ft.kalorienBerechnen();;
+        ft.kalorienBerechnen();
 
         //Ergebnis auslesen
         String ergebnis = ft.ausgabeKalorien_label.getText();
