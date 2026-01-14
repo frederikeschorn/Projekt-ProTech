@@ -13,13 +13,13 @@ public class FitnessTracker extends JFrame {
     private JPanel mainPanel;
     private JLabel datum_label;
     private JLabel gewicht_label;
-    private JTextField gewicht_textField1;
+    public JTextField gewicht_textField1;
     private JLabel sportart_label;
-    private JComboBox sportart_comboBox1;
+    public JComboBox sportart_comboBox1;
     private JLabel dauerMin_label;
-    private JTextField dauerMin_textField1;
+    public JTextField dauerMin_textField1;
     private JLabel kalorien_label;
-    private JLabel ausgabeKalorien_label;
+    public JLabel ausgabeKalorien_label;
     private JButton berechnen_button1;
     private JButton speichern_button1;
     private JTextArea workoutListe_textArea1;
@@ -179,13 +179,23 @@ public class FitnessTracker extends JFrame {
         String tag = tage_comboBox1.getSelectedItem().toString();
         String monat = monat_comboBox2.getSelectedItem().toString();
         String jahr = jahr_comboBox3.getSelectedItem().toString();
+
+        String datum = tag + "/" + monat + "/" + jahr;
+
         String sportart = sportart_comboBox1.getSelectedItem().toString();
         String kalorien = ausgabeKalorien_label.getText();
 
-        liste.add(new Workouts("01/05/2024", 45, 520.00, "Laufen"));
-        workoutListe_textArea1.setText(workoutListe_textArea1.getText() + "Datum: " + tag + "/" + monat + "/" + jahr + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + " Minuten\n" + "Kalorien verbraucht: " + kalorien + "\n" + "\n");
+        int dauerInt = Integer.parseInt(dauer);
+        double kcal = Double.parseDouble(kalorien.replace("," , ".")); //Java erwartet Punkt bei Kalorien und nicht Komma - deshalb ändern
 
-        double kcal = Double.parseDouble(kalorien.replace(",", ".")); //Java erwartet Punkt bei Kalorien und nicht Komma - deshalb ändern
+        //Objekt erzeugen und zur Liste hinzufügen
+        Workouts workout = new Workouts(datum, dauerInt, kcal, sportart);
+        liste.add(workout);
+
+        //Ausgabe über Objekt-Methode
+        workoutListe_textArea1.append(workout.toText());
+
+        //Kalorien zur Gesamtsumme addieren
         kalorienSumme = kalorienSumme + kcal;
     }
 
