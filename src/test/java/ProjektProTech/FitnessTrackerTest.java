@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FitnessTrackerTest {
 
     @Test
-    void kalorienBerechnenLaufen() {
+    void kalorienBerechnenLaufentest() {
         FitnessTracker ft = new FitnessTracker();
 
         //Eingabefelder setzten
@@ -25,4 +25,6 @@ class FitnessTrackerTest {
         //Erwartetes Ergebnis prüfen
         assertEquals(700.0, kalorien);
     }
+
 }
+
