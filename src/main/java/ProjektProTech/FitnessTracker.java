@@ -47,7 +47,7 @@ public class FitnessTracker extends JFrame {
 
 // Workouts werden beim Start angezeigt
         for (Workouts w : initMethode()) {
-            workoutListe_textArea1.append(w.toText());
+            workoutListe_textArea1.append(w.inListeAnzeigen());
         }
 
 
@@ -157,15 +157,6 @@ public class FitnessTracker extends JFrame {
         String dauer = dauerMin_textField1.getText().trim();
         String name = name_textField1.getText().trim();
 
-        //Prüfen ob bei Name, Gewicht, Dauer und Sportart etwas eingegeben wurde -> wenn nicht, dann Fehlerfenster
-        if (name.isEmpty() || gewicht.isEmpty() || dauer.isEmpty() || sportart_comboBox1.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(null, "Bitte Gewicht, Dauer, Name und Sportart eingeben. \nSind diese ausgefüllt, bitte betätige den 'Berechnen-Button'.");
-            return;
-        }
-
-        //Name wird angezeigt ohne alles zulöschen
-        workoutListe_textArea1.append("Workout von: " + name + "\n");
-
 
         //Name prüfen
         if (name.isEmpty()) {
@@ -174,6 +165,8 @@ public class FitnessTracker extends JFrame {
             return;
         }
 
+        //Name wird über Objekt angezeigt
+        workoutListe_textArea1.append("Workout von: " + name + "\n");
 
         //Datum auslesen
         String tag = tage_comboBox1.getSelectedItem().toString();
@@ -193,7 +186,7 @@ public class FitnessTracker extends JFrame {
         liste.add(workout);
 
         //Ausgabe über Objekt-Methode
-        workoutListe_textArea1.append(workout.toText());
+        workoutListe_textArea1.append(workout.inListeAnzeigen());
 
         //Kalorien zur Gesamtsumme addieren
         kalorienSumme = kalorienSumme + kcal;
@@ -219,12 +212,9 @@ public class FitnessTracker extends JFrame {
     }
 
     public static ArrayList<Workouts> initMethode() {
-
-
         liste.add(new Workouts("01/05/2024", 45, 520.00, "Laufen"));
         liste.add(new Workouts("10/09/2025", 60, 610.00, "Krafttraining"));
         liste.add(new Workouts("15/10/2025", 90, 780.00, "Radfahren"));
-
         return liste;
     }
 }
