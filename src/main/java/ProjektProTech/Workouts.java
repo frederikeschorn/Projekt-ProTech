@@ -17,7 +17,7 @@ public class Workouts {
         this.sportart = sportart;
     }
 
-    public String toText(){
+    public String inListeAnzeigen(){
         return "Datum: " + datum + "\n" + "Sportart: " + sportart + "\n" + "Dauer: " + dauer + " Minuten\n" + "Kalorien verbraucht: " + kalorien + "\n\n";
     }
 

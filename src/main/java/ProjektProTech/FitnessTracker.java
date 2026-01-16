@@ -62,7 +62,7 @@ public class FitnessTracker extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 inListeSpeichern();
-                clearTextfeld();
+                textfeldLeeren();
             }
         });
         kalorienSumme_button1.addActionListener(new ActionListener() {
@@ -194,7 +194,7 @@ public class FitnessTracker extends JFrame {
 
 
     //Eingabefelder Dauer und Gewicht löschen nach betätigen des Speichern Button
-    public void clearTextfeld() {
+    public void textfeldLeeren() {
         dauerMin_textField1.setText("");
         gewicht_textField1.setText("");
     }
